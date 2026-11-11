@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .item {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .total {
+            text-align: right;
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 25px;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: white;
+            background: #007bff;
+            padding: 12px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>My Shopping Cart</h1>
+
+    {% if cart %}
+
+        {% for item in cart %}
+
+            <div class="item">
+
+                <h3>{{ item.product.name }}</h3>
+
+                <p>Price: ₹{{ item.price }}</p>
+
+                <p>Quantity: {{ item.quantity }}</p>
+
+                <p>Subtotal: ₹{{ item.total_price }}</p>
+
+            </div>
+
+        {% endfor %}
+
+        <div class="total">
+            Total: ₹{{ cart.get_total_price }}
+        </div>
+
+        <a href="/">Continue Shopping</a>
+
+    {% else %}
+
+        <div class="empty">
+            <h2>Your cart is empty!</h2>
+            <p>Add some products to your shopping cart.</p>
+            <a href="/">Continue Shopping</a>
+        </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>
